@@ -1,0 +1,18 @@
+#AncoraMaps {
+    color: black;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 4px 8px 4px 8px; 
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px outset #bf6cf0;
+    background-color: #ddcae8;
+}
+
+#AncoraMaps:hover {
+    box-shadow: none;
+    background-color: #c7fcef;
+    border: 3px outset #c7fcef;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}

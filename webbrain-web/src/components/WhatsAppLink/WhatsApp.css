@@ -1,0 +1,11 @@
+.AncoraWhatsApp {
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.AncoraWhatsApp:hover {
+    width: 40px;
+    height: auto;
+    content: url('../../../public/img/iconWhatsappHoover.png');
+}

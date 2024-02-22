@@ -1,0 +1,9 @@
+.App {
+    padding-top: 10%;
+    height: 100vh; /* Definir a altura da div principal como 100% da altura da viewport */
+  }
+
+.Container {
+    padding-right: 10%;
+   
+}
