@@ -1,10 +1,5 @@
 <h1 align="center"> Web Brain Tecnlogia - Formulário de contato </h1>
 
-<p align="center">
-  <a href="#-stack">Stack</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-How to test">How to test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-</p>
-
 ## Stack
 
 <h3>Back-end</h3> 
