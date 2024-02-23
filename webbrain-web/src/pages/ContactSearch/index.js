@@ -32,7 +32,6 @@ const ContactSearch = () => {
 
     useEffect(() => {
         const { state } = location || null;
-        console.log(state)
         if (state) setLastRegisteredContact({
             ...state,
             createdAt: parseISO(state.created_at),
@@ -41,6 +40,10 @@ const ContactSearch = () => {
         });
         getContactOptions().then(response => {
             setContactOptions(JSON.parse(response.request.response))
+            setIsLoading(false)
+        }).catch(error => {
+            alert(error.message)
+        }).finally(() => {
             setIsLoading(false)
         })
     }, [window.location.pathname])
@@ -77,8 +80,8 @@ const ContactSearch = () => {
         const { currentPage, perPage } = pageInfo
         getContactsList({
             currentPage: currentPage,
-            perPage: 
-                perPage > 0 
+            perPage:
+                perPage > 0
                 ?   perPage < 10
                     ?  perPage
                     : 10
@@ -107,6 +110,9 @@ const ContactSearch = () => {
                     }
                 })
             )
+        }).catch(error => {
+            alert(error.message)
+        }).finally(() =>{
             setStartSearching(false)
         })
     };
@@ -174,8 +180,8 @@ const ContactSearch = () => {
                                     />
                                 </Col>
                                 <Col xs={8}>
-                                    <InputGroup.Text 
-                                        id="basic-addon1" 
+                                    <InputGroup.Text
+                                        id="basic-addon1"
                                         className="ms-2"
                                         style={{placeContent: 'center'}}
                                     >

@@ -22,12 +22,14 @@ const ContactForm = () => {
     const [errors, setErrors] = useState({});
 
     const [contactOption, setContactOptions] = useState([]);
-    
+
     const navigate = useNavigate();
 
     useEffect(() => {
         getContactOptions().then(response => {
             setContactOptions(JSON.parse(response.request.response))
+        }).catch(error => {
+            alert(error.message)
         })
     }, [])
 
@@ -37,7 +39,7 @@ const ContactForm = () => {
             [event.target.name]: event.target.value
         })
     }
-    
+
     const handleOptionsSelectChange = (selectedOptions) => {
         setFormData({
             ...formData,
@@ -58,6 +60,8 @@ const ContactForm = () => {
                 }
             ).then(response => {
                 navigate("/contact-search/", {state: JSON.parse(response.request.response)})
+            }).catch(error => {
+                alert(error.message)
             })
         } else {
             setErrors(validationErrors)
@@ -97,7 +101,7 @@ const ContactForm = () => {
                         md={12}
                         lg={errors.birthDate ? 12 : 7}
                         xxl={errors.birthDate ? 12 : 8}
-                        
+
                     >
                         <label htmlFor="name">Nome:</label>
                         <input
@@ -111,7 +115,7 @@ const ContactForm = () => {
                             aria-describedby="basic-addon2"
                         />
                         {
-                            errors.name && 
+                            errors.name &&
                             <Alert className='mt-1 mb-0 p-1 text-center' key={errors.name} variant="danger">
                                 {errors.name}
                             </Alert>
@@ -142,7 +146,7 @@ const ContactForm = () => {
                                 />
                             </Col>
                             {
-                                errors.birthDate && 
+                                errors.birthDate &&
                                 <Col lg={7} xl={7} xxl={8}>
                                     <Alert className='mt-1 mb-0 p-1 text-center' key={errors.birthDate} variant="danger">
                                         {errors.birthDate}
@@ -167,7 +171,7 @@ const ContactForm = () => {
                             aria-describedby="basic-addon2"
                         />
                         {
-                            errors.email && 
+                            errors.email &&
                             <Alert className='mt-1 mb-0 p-1 text-center' key={errors.email} variant="danger">
                                 {errors.email}
                             </Alert>
@@ -184,7 +188,7 @@ const ContactForm = () => {
                             onChange={handleChange}
                             placeholder="(99) 99999-9999"
                             maxLength={15}
-                            
+
                             getPhoneRegex = {(length) => {
                                 let digit1 = 2
                                 length -= length - digit1 < 0 ? 0 : digit1
@@ -199,7 +203,7 @@ const ContactForm = () => {
                         />
                     </Col>
                     <Col className='ps-md-1' xs={12} sm={6} md={6}>
-                        <MaskedFormControl 
+                        <MaskedFormControl
                             id="telefone"
                             label="Telefone:"
                             name="phone"
@@ -222,9 +226,9 @@ const ContactForm = () => {
                     </Col>
                     <Col className="mb-3">
                         {
-                            (errors.phone || errors.whatsApp) && 
+                            (errors.phone || errors.whatsApp) &&
                             <Alert className='mt-1 mb-0 p-1 text-center' key={errors.phone} variant="danger">
-                                {errors.phone} 
+                                {errors.phone}
                                 {errors.phone && <br/>}
                                 {errors.whatsApp}
                             </Alert>
@@ -243,7 +247,7 @@ const ContactForm = () => {
                             getOptionLabel={option => option.description}
                         />
                         {
-                            errors.options && 
+                            errors.options &&
                             <Alert className='mt-1 mb-0 p-1 text-center' key={errors.options} variant="danger">
                                 {errors.options}
                             </Alert>
@@ -262,7 +266,7 @@ const ContactForm = () => {
                             aria-label="Mensagem">
                         </textarea>
                         {
-                            errors.message && 
+                            errors.message &&
                             <Alert className='mt-1 mb-0 p-1 text-center' key={errors.message} variant="danger">
                                 {errors.message}
                             </Alert>
@@ -273,7 +277,7 @@ const ContactForm = () => {
                     Enviar formulário
                 </Button>
             </Form>
-            
+
         </Container>
     )
 }

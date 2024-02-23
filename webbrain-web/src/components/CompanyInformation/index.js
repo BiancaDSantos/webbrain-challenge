@@ -8,13 +8,13 @@ import { getCompanyInfo } from "../../services/CompanyService"
 const CompanyInformation = ({companyId}) => {
 
     const [company, setCompany] = useState({});
-    
+
     useEffect(() => {
        getCompanyInfo(companyId).then(response => {
             setCompany(JSON.parse(response.request.response))
         }).catch(error => {
-            alert(JSON.parse(error.request.response).message)
-        })     
+            alert(error.message)
+        })
     }, [companyId])
 
     return (
@@ -52,4 +52,4 @@ const CompanyInformation = ({companyId}) => {
     )
 }
 
-export default CompanyInformation; 
+export default CompanyInformation;
