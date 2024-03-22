@@ -27,7 +27,7 @@ const ContactForm = () => {
 
     useEffect(() => {
         getContactOptions().then(response => {
-            setContactOptions(JSON.parse(response.request.response))
+            setContactOptions(response.data)
         })
     }, [])
 
@@ -57,7 +57,7 @@ const ContactForm = () => {
                     birth_date: formData.birthDate
                 }
             ).then(response => {
-                navigate("/contact-search/", {state: JSON.parse(response.request.response)})
+                navigate("/contact-search/", {state: response.data})
             })
         } else {
             setErrors(validationErrors)

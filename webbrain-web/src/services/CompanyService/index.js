@@ -1,5 +1,5 @@
-import api from ".."
+import axios from "../"
 
 export const getCompanyInfo = (id) => {
-    return api.get(`/company-info/${id}`)
+    return axios.get(`getCompanyInfo.php?id=${id}`)
 }

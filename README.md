@@ -31,17 +31,16 @@
 - Install MySQL [Download](https://dev.mysql.com/downloads/mysql/)
 - Install Node and NPM [Download](https://nodejs.org/en)
 - Install PHP [Download](https://www.php.net/downloads.php)
-- Configure the database conection in the [.env](./webbrain-api/.env) back-end file
+- Configure the database conection in the [Database.php](./webbrain-api/Database.php) back-end file
 - - The database schema will be automatically created when the back-end start
 - Initializing
 - - Windowns
 - - - Execute the [configure.bat](./configure.bat) file 
-- - - Then execute then [init.bat](./init.bat) file 
-- - Others OS
+- - - Then execute the [init.bat](./init.bat) file 
+- - Other OS
 - - - Run the following commands in the terminal
 - - - - cd ./webbrain-api
-- - - - php artisan migrate --force
-- - - - php artisan serve --port=8080
+- - - - php -S localhost:8080
 - - - - cd ../webbrain-web
 - - - - npm install
 - - - - npm start

@@ -20,11 +20,9 @@ const ContactSearch = () => {
     const [isSearching, setStartSearching] = useState(false)
     const [pageInfo, setPageInfo] = useState({
         currentPage: 1,
-        from: 0,
-        to: 0,
         quantity: 0,
         lastPage: 1,
-        perPage: 20,
+        perPage: 10,
         total: 0,
     })
 
@@ -32,15 +30,12 @@ const ContactSearch = () => {
 
     useEffect(() => {
         const { state } = location || null;
-        console.log(state)
         if (state) setLastRegisteredContact({
             ...state,
-            createdAt: parseISO(state.created_at),
-            updatedAt: parseISO(state.updated_at),
             birthDate: parseISO(state.birth_date)
         });
         getContactOptions().then(response => {
-            setContactOptions(JSON.parse(response.request.response))
+            setContactOptions(response.data)
             setIsLoading(false)
         })
     }, [window.location.pathname])
@@ -69,8 +64,8 @@ const ContactSearch = () => {
     const getOptionDescription = (option) => {
         return contactOptions
             .find(contactOption =>
-                contactOption.id === option.id
-            ).description
+                contactOption.id == option
+            )?.description
     }
 
     const search = () => {
@@ -85,13 +80,11 @@ const ContactSearch = () => {
                 : 6,
             options: searchOptions.map(option => option.id)
         }).then(response => {
-            const responseBody = JSON.parse(response.request.response)
+            const responseBody = response.data
             setPageInfo(
                 {
                     currentPage: responseBody.current_page,
-                    from: responseBody.from,
-                    to: responseBody.to,
-                    quantity: responseBody.to - (responseBody.from - 1),
+                    quantity: responseBody.quantity,
                     lastPage: responseBody.last_page,
                     perPage: responseBody.per_page,
                     total: responseBody.total
@@ -101,8 +94,6 @@ const ContactSearch = () => {
                 responseBody.data.map(contact => {
                     return {
                         ...contact,
-                        createdAt: parseISO(contact.created_at),
-                        updatedAt: parseISO(contact.updated_at),
                         birthDate: parseISO(contact.birth_date)
                     }
                 })

@@ -11,10 +11,16 @@ const CompanyInformation = ({companyId}) => {
     
     useEffect(() => {
        getCompanyInfo(companyId).then(response => {
-            setCompany(JSON.parse(response.request.response))
-        }).catch(error => {
-            alert(JSON.parse(error.request.response).message)
-        })     
+            const data = response.data;
+            setCompany({
+                ...data,
+                officeHours: data.office_hours,
+                numberPhone: data.number_phone,
+                whatsappLink: data.whatsapp_link,
+                zipCode: data.zip_code,
+                mapsLink: data.map_link, 
+            })
+        })
     }, [companyId])
 
     return (
@@ -22,7 +28,7 @@ const CompanyInformation = ({companyId}) => {
             <h1>{company.name}</h1>
             <h2>Entre em contato conosco</h2>
             <h5>Horário de atendimento</h5>
-            <p>{company.OfficeHours}</p>
+            <p>{company.officeHours}</p>
             <Row >
                 <Col xs={12} md={5} lg={4} >
                     <h5>Telefone</h5>
